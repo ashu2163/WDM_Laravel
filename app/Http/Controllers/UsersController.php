@@ -20,7 +20,7 @@ class UsersController extends Controller
             $user->email = $request->Email;
             $user ->Password = $request->password;
             $user->save();
-            echo $this->createLocalSession($request->Fname);
+            $this->login($request);
         }
     }
 
@@ -52,6 +52,12 @@ class UsersController extends Controller
         return $user;
     }
 
+    private function jump_back(){
+        return '<script>
+                    self.location = document.referrer;
+                </script>>';
+    }
+
     private function email_exsited_alert(){
         return '<script>
                     alert("email is existed,try again");
@@ -61,7 +67,7 @@ class UsersController extends Controller
 
     private function createLocalSession($name){
         return  '<script>
-                    sessionStorage.setItem("name",'.$name.')
+                    sessionStorage.setItem("name","'.$name.'")
                     console.log(sessionStorage)
                     window.location.href= "adminproject";
                 </script>';
