@@ -4,7 +4,7 @@ function projectClick() {
    const div =  this.document.getElementById("displayTag");
    const Name =  this.document.getElementById("clickedName");
    Name.innerText = 'Project'
-   
+
     // div.innerHTML = "   \n" +
     //     "                <p>Project ID</p>" +
     //     "                <p>Title</p>" +
@@ -159,7 +159,7 @@ function setActive(tag) {
 
 function signout() {
         sessionStorage.clear();
-        window.location.href="index.html"
+        window.location.href="index"
 }
 
 function ifLogin() {

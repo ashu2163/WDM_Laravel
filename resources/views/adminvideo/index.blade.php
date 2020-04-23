@@ -31,7 +31,7 @@
     <div class="titleRow">
 
         <h1>Welcome</h1>
-        <h2 id="username">User:</h2>
+        <h2 id="username">User:{{$name}}</h2>
         <text onclick="signout()" >sign out</text>
 
     </div>
@@ -75,15 +75,15 @@
     <a class="close" href="#">&times;</a>
     <form action="{{route('adminvideo.update')}}"  method="post" enctype="multipart/form-data" class="form-container">
     @csrf
-        <p>Video ID:</p> 
+        <p>Video ID:</p>
         <input type="text" id="vid" name="videoid"  required readonly="yes">
-          
+
         <p>Video Type:</p>
         <input type="text" id="videotype" name="videotype" required>
 
         <p>Video Description:</p>
         <textarea id="videodescription" name="videodescription" rows="5" width="50%"></textarea>
-        
+
         <p>Video Url:</p>
         <input type="text" id="videoUrl" name="videourl" readonly="yes">
 
@@ -146,13 +146,13 @@
 
 
     <script>
-      function btnEdit(x) 
-      {    
+      function btnEdit(x)
+      {
         vt=document.getElementById("vt"+x).innerHTML;
         vd=document.getElementById("vd"+x).innerHTML;
         vu=document.getElementById("vu"+x).innerHTML;
         date=document.getElementById("date"+x).innerHTML;
-        
+
         document.getElementById('vid').value=x;
         // document.getElementById('userid').value=ui;
         document.getElementById('videotype').value=vt;
@@ -166,8 +166,8 @@
         document.getElementById('videoId').value=x;
         alert(document.getElementById('videoId').value);
       }
-      
-      
+
+
       function closeForm() {
         document.getElementById("popupForm").style.display="none";
       }

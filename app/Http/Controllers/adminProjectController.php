@@ -8,12 +8,20 @@ use App\project;
 
 class adminProjectController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //$projs=project::all()->toArray();
-        $projs= project::select('*')->where('UserID','=','1')->get();
-        return view('adminproject.index',compact('projs'));
+        if($request->session()->has('UserID')) {
+            $UserID = $request->session()->get('UserID');
+            $name = $request->session()->get('name');
+
+            $projs = project::select('*')->where('UserID', '=', $UserID)->get();
+            return view('adminproject.index', compact('projs','name'));
+        }else{
+            echo $this->not_login();
+        }
     }
+
+
 
     public function create()
     {
@@ -37,14 +45,14 @@ class adminProjectController extends Controller
             echo $originalname;
             $path=$imgfile->move(public_path('proyect_1'),$originalname);
             echo $path;
-            $proj = project::where( 'ProjectID',$request->input('id'))->update(['ProjectName'=>$request->input('projectname'), 
+            $proj = project::where( 'ProjectID',$request->input('id'))->update(['ProjectName'=>$request->input('projectname'),
                                                                             'ProjectDescription'=>$request->input('projdesc'),
                                                                             'imgUrl'=>'proyect_1/'.$originalname,
                                                                             'Date' => $request->input('date')]);
             return redirect()->route('adminproject.index')->with('info','Project Updated Successfully');
         }
         else{
-            $proj = project::where( 'ProjectID',$request->input('id'))->update(['ProjectName'=>$request->input('projectname'), 
+            $proj = project::where( 'ProjectID',$request->input('id'))->update(['ProjectName'=>$request->input('projectname'),
                                                                             'ProjectDescription'=>$request->input('projdesc'),
                                                                             'Date' => $request->input('date')]);
             return redirect()->route('adminproject.index')->with('info','Project Updated Successfully');
@@ -55,37 +63,41 @@ class adminProjectController extends Controller
     {
         //Persist the employee in the database
         //form data is available in the request object
-        $project = new project();
-        
-        $imgfile=$request->file('inimgfile');
-        if($imgfile!=''){
-            $request->validate([
-                'inimgfile' => 'image|max:2048'
-            ]);
+          if($request->session()->has('UserID')) {
+              $UserID = $request->session()->get('UserID');
+              $project = new project();
 
-            $image_name=rand(). '.' . $imgfile->getClientOriginalExtension();
-            $originalname = $imgfile->getClientOriginalName();
-            $path=$imgfile->move(public_path('proyect_1'),$originalname);
+              $imgfile = $request->file('inimgfile');
+              if ($imgfile != '') {
+                  $request->validate([
+                      'inimgfile' => 'image|max:2048'
+                  ]);
 
-            $project->ProjectName = $request->input('projectname');
-            $project->UserID = '1';
-            $project->imgUrl='proyect_1/'.$originalname;
-            $project->ProjectDescription = $request->input('projdesc');
-            $project->Date = $request->input('indate');
-            $project->save(); 
-        
-            return redirect()->route('adminproject.index')->with('info','Project Added Successfully');
-        }
-        else{
-            $project->ProjectName = $request->input('projectname');
-            $project->UserID = '1';
-            $project->imgUrl='';
-            $project->ProjectDescription = $request->input('projdesc');
-            $project->Date = $request->input('indate');
-            $project->save(); 
-        
-            return redirect()->route('adminproject.index')->with('info','Project Added Successfully');
-        }
+                  $image_name = rand() . '.' . $imgfile->getClientOriginalExtension();
+                  $originalname = $imgfile->getClientOriginalName();
+                  $path = $imgfile->move(public_path('proyect_1'), $originalname);
+
+                  $project->ProjectName = $request->input('projectname');
+                  $project->UserID = $UserID;
+                  $project->imgUrl = 'proyect_1/' . $originalname;
+                  $project->ProjectDescription = $request->input('projdesc');
+                  $project->Date = $request->input('indate');
+                  $project->save();
+
+                  return redirect()->route('adminproject.index')->with('info', 'Project Added Successfully');
+              } else {
+                  $project->ProjectName = $request->input('projectname');
+                  $project->UserID = $UserID;
+                  $project->imgUrl = '';
+                  $project->ProjectDescription = $request->input('projdesc');
+                  $project->Date = $request->input('indate');
+                  $project->save();
+
+                  return redirect()->route('adminproject.index')->with('info', 'Project Added Successfully');
+              }
+          }else{
+              echo $this->not_login();
+          }
     }
 
 
@@ -99,13 +111,20 @@ class adminProjectController extends Controller
         return redirect()->route('adminproject.index');
     }
 
-
+    private function not_login(){
+        return '<script>
+                    alert("please login first");
+                    self.location = document.referrer;
+                </script>>';
+    }
     // public function edit($id)
     // {
     //     //Find the employee
     //     $employee = Employee::find($id);
     //     return view('employee.edit',['employee'=> $employee]);
     // }
+
+
 
 }
 ?>

@@ -15,7 +15,7 @@ session_start();
 
 <div class="nav-container" id="myTopnav">
     <img src="image/logo.png">
-    <a href="./forms/create" >inicio</a>
+    <a href="./index" >inicio</a>
     <a href="./semblanza">semblanza</a>
     <a href="./centro_augusto">centro augusto mijares</a>
     <a href="./proyectos" >proyectos</a>

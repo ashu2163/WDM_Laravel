@@ -13,12 +13,13 @@ class EventosController extends Controller
 
         $event=events::all()->toArray();
         return view('eventos',compact('event'));
-        
+
     }
 
     public function create()
     {
         //
+
     }
 
     /**

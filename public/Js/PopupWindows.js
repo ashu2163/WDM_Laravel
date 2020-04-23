@@ -1,24 +1,25 @@
 
 
+
+
 function validate(){
-    var username = document.forms["form1"]["username"];               
-    var password = document.forms["form1"]["password"]; 
-                
+    var username = document.forms["form1"]["username"];
+    var password = document.forms["form1"]["password"];
+
     if (username.value == "" || password.value == "" )
     {
-        if (username.value == "")                                  
-        { 
+        if (username.value == "")
+        {
             window.alert("Javascript Validation: Please enter your username.");
-        } 
-                          
-        if (password.value == "")                        
-        { 
-            window.alert("Javascript Validation: Please enter your password."); 
-        } 
-        
-    
-    }    
-    alert("OK");
+        }
+
+        if (password.value == "")
+        {
+            window.alert("Javascript Validation: Please enter your password.");
+        }
+
+
+    }
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(username.value.match(mailformat))
     {
@@ -55,7 +56,9 @@ function closePopupWindow() {
     target.removeChild(removeTarget)
 }
 
-function openLoginPopupWindow() { 
+
+
+function openLoginPopupWindow() {
     if(!sessionStorage.getItem("name")){
         closePopupWindow() ; // only have on window at same time
         const Popupwindow = this.document.getElementById("LoginWindow");
@@ -63,13 +66,13 @@ function openLoginPopupWindow() {
         divPop.className = "InieteDeSesiem"
         divPop.id = "popupWindow"
         divPop.innerHTML ="<img id = 'close' onclick='closePopupWindow()' src=\"image/close.png\" > </img>\n" +
-            "    <form action=\"{{ route('loginValidation.store') }}\" name=\"form1\" method=\"post\">\n" +
+            "    <form action=\"login\" name=\"form1\" method=\"POST\">\n" +
             "<div class=\"content_container\">\n" +
             "    <img src=\"image/logo.png\">\n" +
             "    <h2>CENTRO AUGUSTO MIJARES </h2>\n" +
             "    <h3>Iniciar Sesion</S></h3>\n" +
             "    <div>\n" +
-            "        <input type=\"email\" id=\"user\"  name=\"username\" placeholder=\"Nombre de Usuario o Correo\" required>\n" +
+            "        <input type=\"email\" id=\"user\"  name=\"Email\" placeholder=\"Nombre de Usuario o Correo\" required>\n" +
             "        <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Contrasena\" required>\n" +
             "        <div>\n" +
             "            <button class=\"submitbutton\" type=\"submit\" onclick=\"validate()\" value=\"ENTRAR\" id=\"submit\">ENTRAR</button>\n" +
@@ -92,7 +95,7 @@ function openRegisterWindow(){
     divPop.className = "Registru"
     divPop.id = "BigPopupWindow"
     divPop.innerHTML = "  <img id = 'close' onclick='closePopupWindow()' src='image/close.png'> </img>\n" +
-    "    <form action=\"register.php\" name=\"form2\" method=\"post\">\n" +
+    "    <form action=\"user\" name=\"form2\" method=\"POST\">\n" +
         "<div class=\"content_container\">\n" +
         "<img src=\"image/logo.png\">\n" +
         "<h4>Registro</h4>\n" +
@@ -128,32 +131,32 @@ function openRegisterWindow(){
 
 function validateReg(){
     var username = document.forms["form2"]["Fname"];
-    var email = document.forms["form2"]["Email"];               
-    var password = document.forms["form2"]["password"];  
+    var email = document.forms["form2"]["Email"];
+    var password = document.forms["form2"]["password"];
     var con_pass= document.forms["form2"]["con-pass"];
-                    
+
     if (username.value == "" || password.value == "" || email.value=="" || con_pass=="" )
     {
-        if (username.value == "")                                  
-        { 
+        if (username.value == "")
+        {
             window.alert("Javascript Validation: Please enter your name.");
-        } 
-         
-        if (email.value == "")                                  
-        { 
+        }
+
+        if (email.value == "")
+        {
             window.alert("Javascript Validation: Please enter your email.");
         }
 
-        if (con-pass.value == "")                                  
-        { 
+        if (con-pass.value == "")
+        {
             window.alert("Javascript Validation: Please enter confirm password");
         }
 
-        if (password.value == "")                        
-        { 
-            window.alert("Javascript Validation: Please enter your password."); 
-        } 
-    }    
+        if (password.value == "")
+        {
+            window.alert("Javascript Validation: Please enter your password.");
+        }
+    }
     return true;
 }
 
@@ -167,7 +170,7 @@ var check = function() {
     }
     if (document.getElementById('pass').value ==
         document.getElementById('con-pass').value && document.getElementById('pass').value != '') {
-        //document.getElementById('btn').disabled=false;  
+        //document.getElementById('btn').disabled=false;
         document.getElementById('message').style.color = 'green';
         document.getElementById('message').innerHTML = 'matching';
     } else {

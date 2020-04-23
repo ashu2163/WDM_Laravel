@@ -34,7 +34,7 @@
 <div id="wrapper" class="User">
     <div class="titleRow">
         <h1>Welcome</h1>
-        <h2 id="username">User: </h2>
+        <h2 id="username">User: {{$name}}</h2>
         <text onclick="signout()" >sign out</text>
     </div>
     <hr>
@@ -44,7 +44,7 @@
         <a href="./adminevent" id="event" >Event</a>
         <a href="contacts.php" id="contact" >Contact</a>
         <a href="./adminvideo" id="video" >Videos</a>
-        
+
     </div>
 
 <div class="table_container">
@@ -59,7 +59,7 @@
                 <p style='padding-right:40px; padding-left:30px;'><b>Edit</p>
                 <p><b>Delete</p>
             </div>
-                @foreach($projs as $p)             
+                @foreach($projs as $p)
                     <div class='displayTag1'>
                     <p id='projectid' >{{$p['ProjectID']}} </p>
                     <p id='pn{{$p["ProjectID"]}}'>{{ $p["ProjectName"] }} </p>
@@ -74,7 +74,7 @@
                     </div>
                     </div>
                 @endforeach
-            
+
         </div>
 
 
@@ -83,27 +83,27 @@
     <a class="close" href="#">&times;</a>
     <form action="{{route('adminproject.update')}}"  method="post" enctype="multipart/form-data" class="form-container">
     @csrf
-        <table>  
+        <table>
         <tr>
         <td  style="color: #888888; font-weight:normal;">Project ID:</td>
         <td style="color: #888888; font-weight:normal;">Project Name:</td>
         </tr>
         <tr>
           <td><input type="text" id="id" name="id"  required readonly="yes"></td>
-           
-          
+
+
           <td><input type="text" id="projectname" name="projectname" required><td>
-              
+
           </tr>
             </table>
           <p>Project Description:</p>
           <textarea id="projdesc" name="projdesc" rows="5" width="50%"></textarea>
-        
+
           <p>Image:</p>
           <img id="image" name="image" width="150px"  >
-          
+
           <p> Want to change image?<p>
-          <input type="file" id="imgfile" name="imgfile" >      
+          <input type="file" id="imgfile" name="imgfile" >
 
           <p>Date:</p>
           <input type="date" id="date"  name="date" >
@@ -123,12 +123,12 @@
 
           <p>Project Description:</p>
           <textarea id="inprojdesc" name="projdesc" rows="5" width="50%"></textarea>
-                  
+
           <p> Want to add image?<p>
-          <input type="file" id="inimgfile" name="inimgfile" >      
+          <input type="file" id="inimgfile" name="inimgfile" >
 
           <p>Date:</p>
-          <input type="Date" id="indate"  name="indate" required> 
+          <input type="Date" id="indate"  name="indate" required>
 
           <button type="submit" class="btn" >Add</button>
         </form>
@@ -178,7 +178,7 @@
           document.getElementById('projId').value=x;
 
       }
-      
+
       function closeForm() {
         document.getElementById("popup1").style.display="none";
       }

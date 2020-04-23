@@ -7,12 +7,24 @@ use App\videos;
 
 class adminVideoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //$projs=project::all()->toArray();
-        $video= videos::select('*')->where('UserID','=','1')->get();
-        return view('adminvideo.index',compact('video'));
+        if($request->session()->has('UserID')) {
+            $UserID = $request->session()->get('UserID');
+            $name = $request->session()->get('name');
+            $video = videos::select('*')->where('UserID', '=', $UserID)->get();
+            return view('adminvideo.index', compact('video','name'));
+        }else{
+            echo $this->not_login();
+        }
     }
+    private function not_login(){
+        return '<script>
+                    alert("please login first");
+                    self.location = document.referrer;
+                </script>>';
+    }
+
 
     public function create()
     {
@@ -36,14 +48,14 @@ class adminVideoController extends Controller
             //echo $originalname;
             $path=$video->move(public_path('proyect_1'),$originalname);
             //echo $path;
-            $video = videos::where( 'VideoID',$request->input('videoid'))->update(['VideoType'=>$request->input('videotype'), 
+            $video = videos::where( 'VideoID',$request->input('videoid'))->update(['VideoType'=>$request->input('videotype'),
                                                                             'Description'=>$request->input('videodescription'),
                                                                             'VideoUrl'=>'proyect_1/'.$originalname,
                                                                             'Date' => $request->input('date')]);
             return redirect()->route('adminvideo.index')->with('info','Video Updated Successfully');
         }
         else{
-            $video = videos::where( 'VideoID',$request->input('videoid'))->update(['VideoType'=>$request->input('videotype'), 
+            $video = videos::where( 'VideoID',$request->input('videoid'))->update(['VideoType'=>$request->input('videotype'),
                                                                             'Description'=>$request->input('videodescription'),
                                                                             'VideoUrl'=>'',
                                                                             'Date' => $request->input('date')]);

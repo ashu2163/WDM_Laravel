@@ -14,8 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/index', function () {
+    return view('index');
+});
+
 
 Route::resource('forms','FormController');
 
@@ -32,6 +37,10 @@ Route::get('/semblanza', function()
 Route::get('/centro_augusto', function()
 {
     return view('centro_augusto');
+});
+Route::get('/Mytesta',function(){
+    return "testaa";
+
 });
 
 Route::resource('proyectos','ProyectosController');
@@ -53,6 +62,14 @@ Route::post('/adminevent/delete','admineventController@destroy')->name('admineve
 Route::get('/adminvideo', 'adminVideoController@index')->name('adminvideo.index');
 Route::post('/adminvideo/update','adminVideoController@update')->name('adminvideo.update');
 Route::post('/adminvideo/delete','adminvideoController@destroy')->name('adminvideo.destroy');
+
+
+
+
+
+Route::post('/user','UsersController@store');
+Route::post('/login','UsersController@login');
+
 
 Route::get('/equipo', function()
 {

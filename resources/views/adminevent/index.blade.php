@@ -34,7 +34,7 @@
 <div id="wrapper" class="User">
     <div class="titleRow">
         <h1>Welcome</h1>
-        <h2 id="username">User: </h2>
+        <h2 id="username">User:{{$name}} </h2>
         <text onclick="signout()" >sign out</text>
     </div>
     <hr>
@@ -44,7 +44,7 @@
         <a href="./adminevent" id="event" >Event</a>
         <a href="contacts.php" id="contact" >Contact</a>
         <a href="./adminvideo" id="video" >Videos</a>
-        
+
     </div>
 
 <div class="table_container">
@@ -59,7 +59,7 @@
                 <p style='padding-right:40px; padding-left:30px;'><b>Edit</p>
                 <p><b>Delete</p>
             </div>
-                @foreach($projs as $p)             
+                @foreach($projs as $p)
                     <div class='displayTag1'>
                     <p id='eid' >{{$p['EventID']}} </p>
                     <p id='et{{$p["EventID"]}}'>{{ $p["EventType"] }} </p>
@@ -74,7 +74,7 @@
                     </div>
                     </div>
                 @endforeach
-            
+
         </div>
 
 
@@ -83,24 +83,24 @@
     <a class="close" href="#">&times;</a>
     <form action="{{route('adminevent.update')}}"  method="post" enctype="multipart/form-data" class="form-container">
     @csrf
-        <p>Event ID:</p> 
+        <p>Event ID:</p>
           <input type="text" id="eventid" name="eventid"  required readonly="yes">
-          
+
           <!-- <p>User ID:</p>
           <input type="text" id="userid" name="userid" required readonly="yes"> -->
-                    
+
           <p>Event Type:</p>
           <input type="text" id="eventtype" name="eventtype" required>
 
           <p>Event Description:</p>
           <textarea id="eventdescription" name="eventdescription" rows="5" width="50%"></textarea>
-        
+
           <p>Image:</p>
           <img id="eventimage" name="eventimage" width="150px"  >
-          
+
           <p> Want to change image?<p>
-          <input type="file" id="eventimgfile" name="eventimgfile" > 
-        
+          <input type="file" id="eventimgfile" name="eventimgfile" >
+
           <p>Date:</p>
           <input type="date" id="date"  name="date" required>
 
@@ -116,20 +116,20 @@
 	<div class="edit-popup">
     <a class="close" href="#">&times;</a>
     <form action="{{route('adminevent.store')}}" method="post" enctype="multipart/form-data" class="form-container">
-    @csrf 
+    @csrf
 
     <p>Event Type:</p>
     <input type="text" id="ineventtype" name="ineventtype" required>
 
 
     <p>Event Description:</p>
-    <textarea id="ineventdescription" name="ineventdescription" rows="5" width="50%"></textarea>      
+    <textarea id="ineventdescription" name="ineventdescription" rows="5" width="50%"></textarea>
 
     <p> Want to insert image?<p>
-    <input type="file" id="ineventimgfile" name="ineventimgfile" >      
+    <input type="file" id="ineventimgfile" name="ineventimgfile" >
 
     <p>Date:</p>
-    <input type="Date" id="indate"  name="indate" required> 
+    <input type="Date" id="indate"  name="indate" required>
 
     <button type="submit" class="btn" >Add</button>
 
@@ -182,28 +182,28 @@
 
 
     <script>
-      function btnEdit(x) {  
+      function btnEdit(x) {
         et=document.getElementById("et"+x).innerHTML;
         ed=document.getElementById("ed"+x).innerHTML;
         date=document.getElementById("date"+x).innerHTML;
         eventurl=document.getElementById("eventurl"+x).src;
         document.getElementById('eventid').value=x;
         document.getElementById('eventtype').value=et;
-        
+
         document.getElementById('eventdescription').value=ed;
         document.getElementById('date').value=date;
         document.getElementById('eventimage').src=eventurl;
-          
+
     }
 
     function btnDelete(x){
         document.getElementById('eventId').value=x;
         alert(document.getElementById('eventId').value);
       }
-      
+
       function closeForm() {
         document.getElementById("popup1").style.display="none";
       }
     </script>
 </body>
-</html> 
+</html>

@@ -15,7 +15,7 @@ session_start();
 
 <div class="nav-container" id="myTopnav">
     <img src="image/logo.png">
-    <a href="./forms/create" >inicio</a>
+    <a href="./index" >inicio</a>
     <a href="./semblanza">semblanza</a>
     <a href="./centro_augusto">centro augusto mijares</a>
     <a href="./proyectos" style="color: #454cde">proyectos</a>
@@ -25,7 +25,7 @@ session_start();
     <a href="./equipo">equipo</a>
     <a onclick="openLoginPopupWindow()">Iniete De Sesiem</a>
     <a onclick="openRegisterWindow()">Registru</a>
-    <a href="project.php" id="userTag" style="display: none">User</a>
+    <a href="adminproject" id="userTag" style="display: none">User</a>
     <a href="javascript:void(0);" class="icon" onclick="openResponsive()">
         <i class="fa fa-bars"></i>
     </a>

@@ -17,7 +17,7 @@
 
 <div class="nav-container"  id="myTopnav">
     <img src="{{ URL::asset('image/logo.png') }}">
-    <a href="./forms/create" >inicio</a>
+    <a href="./index" >inicio</a>
     <a href="./semblanza" style="color: #454cde">semblanza</a>
     <a href="./centro_augusto">centro augusto mijares</a>
     <a href="./proyectos">proyectos</a>
@@ -27,7 +27,7 @@
     <a href="./equipo">equipo</a>
     <a onclick="openLoginPopupWindow()">Iniete De Sesiem</a>
     <a onclick="openRegisterWindow()">Registru</a>
-    <a href="project.php" id="userTag" style="display: none">User</a>
+    <a href="adminproject" id="userTag" style="display: none">User</a>
     <a href="javascript:void(0);" class="icon" onclick="openResponsive()">
         <i class="fa fa-bars"></i>
     </a>
