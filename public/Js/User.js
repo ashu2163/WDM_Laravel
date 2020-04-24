@@ -159,7 +159,7 @@ function setActive(tag) {
 
 function signout() {
         sessionStorage.clear();
-        window.location.href="index"
+        window.location.href="Inicio"
 }
 
 function ifLogin() {

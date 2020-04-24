@@ -9,35 +9,31 @@
 @endsection
 
 @section('content')
-    <div class="row">
+
+    @foreach($video as $p)
         @php
             $index =  0;
         @endphp
-    @foreach($video as $p)
-
-
+        <div class="flex">
             @if($index === 3)
-
         </div>
-        <div class="row">
+        <div class="flex" >';
             @php
                 $index = 0;
             @endphp
             @endif
-            <div class="col-md bg-lightpurple w-100 p-3" style="height: 80%">
-                <video width="320" height="150" controls="controls">
+            <div class="card"  style="">
+                <video width="400" height="315" controls="controls">
                     <source src="{{ $p['VideoUrl'] }}" type="video/mp4">
                 </video>
                 <h4>{{$p["Videotype"]}} </h4>
                 <p>{{$p["Description"]}} </p>
-
             </div>
             @php
                 $index ++;
             @endphp
-
-    @endforeach
         </div>
+    @endforeach
 @endsection
 
 

@@ -65,21 +65,23 @@ function openLoginPopupWindow() {
         const  divPop = this.document.createElement("div");
         divPop.className = "InieteDeSesiem"
         divPop.id = "popupWindow"
-        divPop.innerHTML ="<img id = 'close' onclick='closePopupWindow()' src=\"image/close.png\" > </img>\n" +
-            "    <form action=\"login\" name=\"form1\" method=\"POST\">\n" +
-            "<div class=\"content_container\">\n" +
-            "    <img src=\"image/logo.png\">\n" +
-            "    <h2>CENTRO AUGUSTO MIJARES </h2>\n" +
-            "    <h3>Iniciar Sesion</S></h3>\n" +
-            "    <div>\n" +
-            "        <input type=\"email\" id=\"user\"  name=\"Email\" placeholder=\"Nombre de Usuario o Correo\" required>\n" +
-            "        <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Contrasena\" required>\n" +
-            "        <div>\n" +
-            "            <button class=\"submitbutton\" type=\"submit\" onclick=\"validate()\" value=\"ENTRAR\" id=\"submit\">ENTRAR</button>\n" +
-            "        </div>\n" +
-            "    </div>\n" +
-            "</div>\n" +
-            "</form>"
+            divPop.innerHTML = "<img id = 'close' onclick='closePopupWindow()' src=\"image/close.png\" > </img>\n" +
+                "    <form action=\"login\" name=\"form1\" method=\"POST\">\n" +
+                "<div class=\"content_container\">\n" +
+                "    <img src=\"image/logo.png\">\n" +
+                "    <h2>CENTRO AUGUSTO MIJARES </h2>\n" +
+                "    <h3>Iniciar Sesion</S></h3>\n" +
+                "    <div>\n" +
+                "        <input type=\"email\" id=\"user\"  name=\"Email\" placeholder=\"Nombre de Usuario o Correo\" required>\n" +
+                "        <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Contrasena\" required>\n" +
+                "        <div>\n" +
+                "            <button class=\"submitbutton\" type=\"submit\" onclick=\"validate()\" value=\"ENTRAR\" id=\"submit\">ENTRAR</button>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</div>\n" +
+                "</form>"
+
+
         Popupwindow.appendChild(divPop);
     }
     else
@@ -87,6 +89,7 @@ function openLoginPopupWindow() {
         alert("Already logged in!!");
     }
 }
+
 
 function openRegisterWindow(){
     closePopupWindow() ;

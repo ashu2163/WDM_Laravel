@@ -40,6 +40,10 @@ class UsersController extends Controller
         }
     }
 
+    public function bootstrap(){
+        return view("testInherit");
+    }
+
 
 
 

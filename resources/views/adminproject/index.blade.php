@@ -1,44 +1,24 @@
+@extends('app')
 
-<!-- @section('content') -->
+@section('title', 'admin')
 
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>User</title>
-    <link rel="stylesheet" type="text/css" href="style/mijares.css">
-    <script type="text/javascript" src="Js/User.js"></script>
-    <script type="text/javascript" src="Js/PopupWindows.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+@section('header')
+    @parent
 
-<body>
+@endsection
 
-<div class="nav-container" id="myTopnav">
-    <img src="image/logo.png">
-    <a href="./forms/create" >inicio</a>
-    <a href="./semblanza">semblanza</a>
-    <a href="./centro_augusto">centro augusto mijares</a>
-    <a href="./proyectos" >proyectos</a>
-    <a href="./eventos" >eventos</a>
-    <a href="http://jxp8516.uta.cloud/wordpress/">blog</a>
-    <a href="./videos">videos</a>
-    <a href="./equipo">equipo</a>
-    <a onclick="openLoginPopupWindow()">Iniete De Sesiem</a>
-    <a onclick="openRegisterWindow()">Registru</a>
-    <a href="./adminproject" id="userTag" style="color: #454cde" >User</a>
-    <a href="javascript:void(0);" class="icon" onclick="openResponsive()">
-        <i class="fa fa-bars"></i>
-    </a>
+@section('content')
 
-</div>
-<div id="wrapper" class="User">
+
     <div class="titleRow">
         <h1>Welcome</h1>
         <h2 id="username">User: {{$name}}</h2>
-        <text onclick="signout()" >sign out</text>
     </div>
     <hr>
 
+ <div class="row">
+
+     <div class="col-md-3">
     <div class="vertical-menu">
         <a href="./adminproject" id="project" >Project</a>
         <a href="./adminevent" id="event" >Event</a>
@@ -46,37 +26,42 @@
         <a href="./adminvideo" id="video" >Videos</a>
 
     </div>
+     </div>
 
-<div class="table_container">
+     <div class="col-9">
+
         <h3 id="clickedName">Project</h3>
-        <div>
-            <div class="displayTag">
-                <p><b>Project ID</p>
-                <p><b>Project Name</p>
-                <p><b>Project Description</p>
-                <p><b>ImageURL</p>
-                <p><b>Date</p>
-                <p style='padding-right:40px; padding-left:30px;'><b>Edit</p>
-                <p><b>Delete</p>
-            </div>
-                @foreach($projs as $p)
-                    <div class='displayTag1'>
-                    <p id='projectid' >{{$p['ProjectID']}} </p>
-                    <p id='pn{{$p["ProjectID"]}}'>{{ $p["ProjectName"] }} </p>
-                    <p id='pd{{$p["ProjectID"]}}'>{{ $p["ProjectDescription"]   }} </p>
-                    <img id='imgsrc{{   $p["ProjectID"] }}' src='{{ $p["imgUrl"]    }}'>
-                    <p id='date{{$p["ProjectID"]}}'>{{ $p["Date"] }} </p>
-                    <div class='box'>
-                        <a  class='button' href='#popup1' onclick='btnEdit({{ $p["ProjectID"] }})'> Edit </a>
-                    </div>
-                    <div class='box'>
-                        <a  class='button' href='#popup3' onclick='btnDelete({{ $p["ProjectID"] }})'> Delete </a>
-                    </div>
-                    </div>
-                @endforeach
 
-        </div>
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Project Description</th>
+            <th scope="col">Project picture</th>
+            <th scope="col">Project date</th>
+            <th scope="col">operataion</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($projs as $p)
+                <tr>
+                <td id='projectid' >{{$p['ProjectID']}} </td>
+                <td id='pn{{$p["ProjectID"]}}'>{{ $p["ProjectName"] }} </td>
+                <td id='pd{{$p["ProjectID"]}}'>{{ $p["ProjectDescription"]   }} </td>
+                <td> <img class="img-fluid" alt="Responsive image" id='imgsrc{{   $p["ProjectID"] }}' src='{{ $p["imgUrl"]    }}'> </td>
+                <td id='date{{$p["ProjectID"]}}'>{{ $p["Date"] }} </td>
+                <td>
+                    <a  class='button' href='#popup1' onclick='btnEdit({{ $p["ProjectID"] }})'> Edit </a>
+                    <a  class='button' href='#popup3' onclick='btnDelete({{ $p["ProjectID"] }})'> Delete </a>
+                </td>
+                </tr>
+        @endforeach
 
+        </tbody>
+    </table>
+    </div>
 
     <div id="popup1" class="overlay">
 	<div class="edit-popup" >
@@ -155,11 +140,13 @@
                     window.location.href='#popup2';
                 }
             </script>
-            <button class='button' id="iddButton" href='#popup2' onclick="openpop()">
+            <button type="button" class="btn btn-primary" id="iddButton" href='#popup2' onclick="openpop()">
                 Add
             </button>
         </div>
-    </div>
+     </div>
+
+</div>
 
     <script>
       function btnEdit(x) {
@@ -183,5 +170,9 @@
         document.getElementById("popup1").style.display="none";
       }
     </script>
-</body>
-</html>
+@endsection
+
+
+@section('footer')
+    @parent
+@endsection

@@ -1,73 +1,63 @@
-<?php
-session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>proyectos</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('style/mijares.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="{{ URL::asset('js/popupWindows.js') }}"></script>
 
-</head>
-<body>
+@extends('app')
 
-<div class="nav-container" id="myTopnav">
-    <img src="image/logo.png">
-    <a href="./index" >inicio</a>
-    <a href="./semblanza">semblanza</a>
-    <a href="./centro_augusto">centro augusto mijares</a>
-    <a href="./proyectos" style="color: #454cde">proyectos</a>
-    <a href="./eventos">eventos</a>
-    <a href="http://jxp8516.uta.cloud/wordpress/">blog</a>
-    <a href="./videos">videos</a>
-    <a href="./equipo">equipo</a>
-    <a onclick="openLoginPopupWindow()">Iniete De Sesiem</a>
-    <a onclick="openRegisterWindow()">Registru</a>
-    <a href="adminproject" id="userTag" style="display: none">User</a>
-    <a href="javascript:void(0);" class="icon" onclick="openResponsive()">
-        <i class="fa fa-bars"></i>
-    </a>
-</div >
-<div id="wrapper" class="proyectos">   
-    
-    
-    @foreach($projs as $p)
-     
-    <div id="row1">
-    <img style="width: 500px ; height: 400px" src="{{$p['imgUrl'] }}"  alt="" />
-    <div style="vertical-align: top">
-        <h3> {{ $p["ProjectName"] }}
-        <p>description:<p>
-        <p> {{$p["ProjectDescription"] }}
-        </p>
-    </div>
-</div>
-    @endforeach
-    </table>
-    
-    
-    
+@section('title', 'proyetos')
 
-</div>
-<footer>
+@section('header')
+    @parent
+
+@endsection
+
+@section('content')
+
     <div class="container">
-        <div id="bootom-container" >
-            <hr>
-            <text>Copyright @2020 all rights reserved | This template is made with <text id="name">❤</text> by <text id="name">Jimmy and ashu</text></text>
-            <div id="iconGroup" style="float: right">
-                <img src="image/facebook.png" class="facebook" alt="">
-                <img src="image/twitter.png" class="twitter" alt="">
-                <img src="image/basketball.png" alt="">
-                <img src="image/Be.png" alt="">
+    @foreach($projs as $p)
+{{--            <div class="row">--}}
+{{--                <div class="col-md">--}}
+{{--                                    <img  src="{{$p['imgUrl'] }}"  alt="" />--}}
+{{--                </div>--}}
+{{--                <div class="col-md">--}}
+{{--                                        <h3> {{ $p["ProjectName"] }}</h3>--}}
+{{--                                        <p>description:<p>--}}
+{{--                                        <p> {{$p["ProjectDescription"] }}--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            <div class="card  mb-5" style="max-width: 720px;margin: 0 auto">--}}
+{{--                <div class="row no-gutters">--}}
+{{--                    <div class="col-md-4">--}}
+{{--                        <img src="{{$p['imgUrl'] }}" class="card-img" alt="...">--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-8">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <h5 class="card-title">{{ $p["ProjectName"] }}</h5>--}}
+{{--                            <p class="card-text">Description:{{$p["ProjectDescription"] }}</p>--}}
+{{--                            <p class="card-text"><small class="text-muted">Date:{{$p["Date"] }}</small></p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+            <div class="jumbotron shadow p-3 bg-lightpurpl" style="margin: 40px">
+                <h1 class="display-4">{{ $p["ProjectName"] }}</h1>
+                <img src="{{$p['imgUrl'] }}" class="img-fluid" alt="Responsive image">
+                <p class="lead">update:{{$p["Date"]}}</p>
+                <hr class="my-4">
+                <p>{{$p["ProjectDescription"]}}</p>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
             </div>
-        </div>
+
+    @endforeach
     </div>
-</footer>
+@endsection
+
+
+@section('footer')
+    @parent
+@endsection
 
 <div id="LoginWindow"></div>
 <div id="RegisterWindow"></div>
-</body>
-</html>
-<script type="text/javascript" src="{{ URL::asset('Js/afterOnload.js') }}"></script>
+
+<script type="text/javascript" src="Js/afterOnload.js">
+</script>

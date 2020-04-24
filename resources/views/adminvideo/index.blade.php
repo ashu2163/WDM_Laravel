@@ -1,74 +1,85 @@
-<head>
-    <meta charset="UTF-8">
-    <title>User</title>
-    <link rel="stylesheet" type="text/css" href="style/mijares.css">
-    <script type="text/javascript" src="Js/User.js"></script>
-    <script type="text/javascript" src="Js/PopupWindows.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+@extends('app')
 
-<body>
+@section('title', 'admin')
 
-<div class="nav-container" id="myTopnav">
-    <img src="image/logo.png">
-    <a href="./forms/create" >inicio</a>
-    <a href="./semblanza">semblanza</a>
-    <a href="./centro_augusto">centro augusto mijares</a>
-    <a href="./proyectos" >proyectos</a>
-    <a href="./eventos" >eventos</a>
-    <a href="http://jxp8516.uta.cloud/wordpress/">blog</a>
-    <a href="./videos">videos</a>
-    <a href="./equipo">equipo</a>
-    <a onclick="openLoginPopupWindow()">Iniete De Sesiem</a>
-    <a onclick="openRegisterWindow()">Registru</a>
-    <a href="./adminproject" id="userTag" style="color: #454cde" >User</a>
-    <a href="javascript:void(0);" class="icon" onclick="openResponsive()">
-        <i class="fa fa-bars"></i>
-    </a>
+@section('header')
+    @parent
 
-    </div>
-    <div id="wrapper" class="User">
+@endsection
+
+@section('content')
+
     <div class="titleRow">
 
         <h1>Welcome</h1>
         <h2 id="username">User:{{$name}}</h2>
-        <text onclick="signout()" >sign out</text>
-
     </div>
     <hr>
 
+<div class="row">
 
-    <div class="vertical-menu">
+    <div class="col-md-3">
+      <div class="vertical-menu">
         <a href="./adminproject" id="project" >Project</a>
         <a href="./adminevent" id="event" >Event</a>
         <a href="contacts.php" id="contact" >Contact</a>
         <a href="./adminvideo" id="video" >Videos</a>
     </div>
-
-<div class="table_container">
+    </div>
+        <div class="col-md-9">
     <h3 id="clickedName">Video</h3>
     <div>
-        <div class="displayTag">
-            <p><b>Video ID</p>
-            <p><b>Video Type</p>
-            <p><b>Description</p>
-            <p><b>VideoUrl</p>
-            <p><b>Date</p><p><b>Edit</p>
-            <p><b>Delete</p>
-        </div>
-        @foreach($video as $p)
-        <div class='displayTag1'>
-            <p id='videoid'>{{$p["VideoID"]}}</p>
-            <p id='vt{{$p["VideoID"]}}'>{{$p["Videotype"]}}</p>
-            <p id='vd{{$p["VideoID"]}}'>{{$p["Description"]}}</p>
-            <p id='vu{{$p["VideoID"]}}'>{{$p["VideoUrl"]}}</p>
-            <p id='date{{$p["VideoID"]}}'>{{$p["Date"]}}</p>
-            <div class='box'>
-            <a  class='button' href='#popup1' onclick='btnEdit({{ $p["VideoID"] }})'> Edit </a>
-            <a  class='button' href='#popup3' onclick='btnDelete({{ $p["VideoID"] }})'> Delete </a>
-            </div>
-        @endforeach
-        </div>
+
+{{--        <div class="displayTag">--}}
+{{--            <p><b>Video ID</p>--}}
+{{--            <p><b>Video Type</p>--}}
+{{--            <p><b>Description</p>--}}
+{{--            <p><b>VideoUrl</p>--}}
+{{--            <p><b>Date</p><p><b>Edit</p>--}}
+{{--            <p><b>Delete</p>--}}
+{{--        </div>--}}
+{{--        @foreach($video as $p)--}}
+{{--        <div class='displayTag1'>--}}
+{{--            <p id='videoid'>{{$p["VideoID"]}}</p>--}}
+{{--            <p id='vt{{$p["VideoID"]}}'>{{$p["Videotype"]}}</p>--}}
+{{--            <p id='vd{{$p["VideoID"]}}'>{{$p["Description"]}}</p>--}}
+{{--            <p id='vu{{$p["VideoID"]}}'>{{$p["VideoUrl"]}}</p>--}}
+{{--            <p id='date{{$p["VideoID"]}}'>{{$p["Date"]}}</p>--}}
+{{--            <div class='box'>--}}
+{{--            <a  class='button' href='#popup1' onclick='btnEdit({{ $p["VideoID"] }})'> Edit </a>--}}
+{{--            <a  class='button' href='#popup3' onclick='btnDelete({{ $p["VideoID"] }})'> Delete </a>--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+{{--        </div>--}}
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Video Name</th>
+                <th scope="col">Video Description</th>
+                <th scope="col">Video url</th>
+                <th scope="col">Video date</th>
+                <th scope="col">operataion</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($video as $p)
+                <tr>
+                    <td id='videoid' >{{$p['VideoID']}} </td>
+                    <td id='vt{{$p["VideoID"]}}'>{{ $p["Videotype"] }} </td>
+                    <td id='vd{{$p["VideoID"]}}'>{{ $p["Description"]   }} </td>
+                    <td id='vu{{$p["VideoID"]}}'>{{$p["VideoUrl"]}}</td>
+                    <td id='date{{$p["VideoID"]}}'>{{ $p["Date"] }} </td>
+                    <td>
+                        <a  class='button' href='#popup1' onclick='btnEdit({{ $p["VideoID"] }})'> Edit </a>
+                        <a  class='button' href='#popup3' onclick='btnDelete({{ $p["VideoID"] }})'> Delete </a>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
 
     <div id="popup1" class="overlay">
 	<div class="edit-popup" >
@@ -119,30 +130,14 @@
                     window.location.href='#popup2';
                 }
             </script>
-            <button class='button' id="iddButton" href='#popup2' onclick="openpop()">
-                Add
-            </button>
+        <button  type="button" class="btn btn-primary" id="iddButton" href='#popup2' onclick="openpop()">
+            Add
+        </button>
         </div>
     </div>
-
     </div>
-    <footer>
-        <div class="container">
-            <div id="bootom-container" >
-                <hr>
-                <text>Copyright @2020 all rights reserved | This template is made with <text id="name">❤</text> by <text id="name">Jimmy and ashu</text></text>
-                <div id="iconGroup" style="float: right">
-                    <img src="image/facebook.png" class="facebook" alt="">
-                    <img src="image/twitter.png" class="twitter" alt="">
-                    <img src="image/basketball.png" alt="">
-                    <img src="image/Be.png" alt="">
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div id="LoginWindow"></div>
-    <div id="RegisterWindow"></div>
 
+</div>
 
 
     <script>
@@ -172,4 +167,9 @@
         document.getElementById("popupForm").style.display="none";
       }
     </script>
-</body>
+@endsection
+
+
+@section('footer')
+    @parent
+@endsection

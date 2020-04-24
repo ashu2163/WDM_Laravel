@@ -79,11 +79,11 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection
 
 
 @section('footer')
-@parent
+    @parent
 @endsection
 
 

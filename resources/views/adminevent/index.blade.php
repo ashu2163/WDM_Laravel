@@ -1,81 +1,75 @@
+@extends('app')
 
-<!-- @section('content') -->
+@section('title', 'admin')
 
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>User</title>
-    <link rel="stylesheet" type="text/css" href="style/mijares.css">
-    <script type="text/javascript" src="Js/User.js"></script>
-    <script type="text/javascript" src="Js/PopupWindows.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+@section('header')
+    @parent
 
-<body>
+@endsection
 
-<div class="nav-container" id="myTopnav">
-    <img src="image/logo.png">
-    <a href="./forms/create" >inicio</a>
-    <a href="./semblanza">semblanza</a>
-    <a href="./centro_augusto">centro augusto mijares</a>
-    <a href="./proyectos" >proyectos</a>
-    <a href="./eventos" >eventos</a>
-    <a href="http://jxp8516.uta.cloud/wordpress/">blog</a>
-    <a href="./videos">videos</a>
-    <a href="./equipo">equipo</a>
-    <a onclick="openLoginPopupWindow()">Iniete De Sesiem</a>
-    <a onclick="openRegisterWindow()">Registru</a>
-    <a href="./adminproject" id="userTag" style="color: #454cde" >User</a>
-    <a href="javascript:void(0);" class="icon" onclick="openResponsive()">
-        <i class="fa fa-bars"></i>
-    </a>
+@section('content')
 
-</div>
-<div id="wrapper" class="User">
+
+
     <div class="titleRow">
         <h1>Welcome</h1>
         <h2 id="username">User:{{$name}} </h2>
-        <text onclick="signout()" >sign out</text>
     </div>
     <hr>
-
-    <div class="vertical-menu">
-        <a href="./adminproject" id="project" >Project</a>
-        <a href="./adminevent" id="event" >Event</a>
-        <a href="contacts.php" id="contact" >Contact</a>
-        <a href="./adminvideo" id="video" >Videos</a>
-
-    </div>
-
-<div class="table_container">
-        <h3 id="clickedName">Event</h3>
-        <div>
-            <div class="displayTag">
-                <p><b>Event ID</p>
-                <p><b>Event Type</p>
-                <p><b>Event Description</p>
-                <p><b>Event URL</p>
-                <p><b>Date</p>
-                <p style='padding-right:40px; padding-left:30px;'><b>Edit</p>
-                <p><b>Delete</p>
-            </div>
-                @foreach($projs as $p)
-                    <div class='displayTag1'>
-                    <p id='eid' >{{$p['EventID']}} </p>
-                    <p id='et{{$p["EventID"]}}'>{{ $p["EventType"] }} </p>
-                    <p id='ed{{$p["EventID"]}}'>{{ $p["EventDescription"]   }} </p>
-                    <img id='eventurl{{   $p["EventID"] }}' src='{{ $p["EventUrl"]    }}'>
-                    <p id='date{{$p["EventID"]}}'>{{ $p["Date"] }} </p>
-                    <div class='box'>
-                        <a  class='button' href='#popup1' onclick='btnEdit({{ $p["EventID"] }})'> Edit </a>
-                    </div>
-                    <div class='box'>
-                        <a  class='button' href='#popup3' onclick='btnDelete({{ $p["EventID"] }})'> Delete </a>
-                    </div>
-                    </div>
-                @endforeach
+<div class="row">
+    <div class="col-md-3">
+        <div class="vertical-menu">
+            <a href="./adminproject" id="project" >Project</a>
+            <a href="./adminevent" id="event" >Event</a>
+            <a href="contacts.php" id="contact" >Contact</a>
+            <a href="./adminvideo" id="video" >Videos</a>
 
         </div>
+    </div>
+<div class="col-md-9">
+        <h3 id="clickedName">Event</h3>
+    <div class="table-responsive">
+     <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Event Type</th>
+            <th scope="col">Event Description</th>
+            <th scope="col">Event picture</th>
+            <th scope="col">Event date</th>
+            <th scope="col">operataion</th>
+        </tr>
+        </thead>
+        <tbody>
+                @foreach($projs as $p)
+                    <tr>
+                    <td id='eid' >{{$p['EventID']}} </td>
+                    <td id='et{{$p["EventID"]}}'>{{ $p["EventType"] }} </td>
+                    <td id='ed{{$p["EventID"]}}'>{{ $p["EventDescription"]   }} </td>
+                    <td> <img class="img-fluid" alt="Responsive image" id='eventurl{{   $p["EventID"] }}' src='{{ $p["EventUrl"]    }}'> </td>
+                    <td id='date{{$p["EventID"]}}'>{{ $p["Date"] }} </td>
+                        <td>
+                                <a  class='button' href='#popup1' onclick='btnEdit({{ $p["EventID"] }})'> Edit </a>
+                                <a  class='button' href='#popup3' onclick='btnDelete({{ $p["EventID"] }})'> Delete </a>
+                        </td>
+                    </tr>
+                @endforeach
+
+        </tbody>
+    </table>
+    </div>
+
+    <div class='box'>
+        <script>
+            function openpop() {
+                window.location.href='#popup2';
+            }
+        </script>
+        <button type="button" class="btn btn-primary" id="iddButton" href='#popup2' onclick="openpop()">
+            Add
+        </button>
+    </div>
+</div>
 
 
     <div id="popup1" class="overlay">
@@ -151,34 +145,9 @@
     </div>
 
 
-        <div class='box'>
-            <script>
-                function openpop() {
-                    window.location.href='#popup2';
-                }
-            </script>
-            <button class='button' id="iddButton" href='#popup2' onclick="openpop()">
-                Add
-            </button>
-        </div>
-    </div>
 
-    <footer>
-        <div class="container">
-            <div id="bootom-container" >
-                <hr>
-                <text>Copyright @2020 all rights reserved | This template is made with <text id="name">❤</text> by <text id="name">Jimmy and ashu</text></text>
-                <div id="iconGroup" style="float: right">
-                    <img src="image/facebook.png" class="facebook" alt="">
-                    <img src="image/twitter.png" class="twitter" alt="">
-                    <img src="image/basketball.png" alt="">
-                    <img src="image/Be.png" alt="">
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div id="LoginWindow"></div>
-    <div id="RegisterWindow"></div>
+
+</div>
 
 
     <script>
@@ -205,5 +174,9 @@
         document.getElementById("popup1").style.display="none";
       }
     </script>
-</body>
-</html>
+@endsection
+
+
+@section('footer')
+    @parent
+@endsection

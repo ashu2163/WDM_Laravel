@@ -12,7 +12,9 @@ function afterLoadWindow() {
 function showUserTag() {
     if(sessionStorage.getItem('name')){
         console.log(sessionStorage.getItem('name'));
-        this.document.getElementById("userTag").style.display = "inline-block"
+        var user = this.document.getElementById("userTag")
+         user.style.display = "inline-block"
+        user.innerText = "welcome! " + sessionStorage.getItem('name')
     }
 }
 

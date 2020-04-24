@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('Inicio');
 });
 
-Route::get('/index', function () {
-    return view('index');
+Route::get('/Inicio', function () {
+    return view('Inicio');
 });
 
 
@@ -69,6 +69,10 @@ Route::post('/adminvideo/delete','adminvideoController@destroy')->name('adminvid
 
 Route::post('/user','UsersController@store');
 Route::post('/login','UsersController@login');
+Route::get('/bootstrap', function()
+{
+    return view('bootstrapPage.equipo_');
+});
 
 
 Route::get('/equipo', function()
