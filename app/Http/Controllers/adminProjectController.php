@@ -11,11 +11,12 @@ class adminProjectController extends Controller
     public function index(Request $request)
     {
         if($request->session()->has('UserID')) {
+            $role=$request->session()->get('role');
             $UserID = $request->session()->get('UserID');
             $name = $request->session()->get('name');
 
             $projs = project::select('*')->where('UserID', '=', $UserID)->get();
-            return view('adminproject.index', compact('projs','name'));
+            return view('adminproject.index', compact('projs','name','role'));
         }else{
             echo $this->not_login();
         }

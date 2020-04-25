@@ -28,6 +28,7 @@ class UsersController extends Controller
         $user = $this->find_unique_email($request);
         if($user){
             if($user->password == $request->password){
+                session(['role'=> $user->Role]);
                 session(['UserID' =>$user->UserID]);
                 session(['name' =>$user->name]);
                 echo $this->createLocalSession($user->name);

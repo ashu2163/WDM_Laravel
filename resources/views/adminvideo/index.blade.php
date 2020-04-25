@@ -24,6 +24,9 @@
         <a href="./adminevent" id="event" >Event</a>
         <a href="contacts.php" id="contact" >Contact</a>
         <a href="./adminvideo" id="video" >Videos</a>
+        @if($role =='Admin')
+        <a href="./messages" id="video" >Messages</a>
+        @endif
     </div>
     </div>
         <div class="col-md-9">

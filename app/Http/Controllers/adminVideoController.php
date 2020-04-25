@@ -10,10 +10,11 @@ class adminVideoController extends Controller
     public function index(Request $request)
     {
         if($request->session()->has('UserID')) {
+            $role=$request->session()->get('role');
             $UserID = $request->session()->get('UserID');
             $name = $request->session()->get('name');
             $video = videos::select('*')->where('UserID', '=', $UserID)->get();
-            return view('adminvideo.index', compact('video','name'));
+            return view('adminvideo.index', compact('video','name','role'));
         }else{
             echo $this->not_login();
         }

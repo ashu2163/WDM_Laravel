@@ -80,3 +80,8 @@ Route::get('/equipo', function()
     return view('equipo');
 });
 
+Route::get('/contacts','ContactController@getContact');
+Route::post('/contacts','ContactController@saveContact11');
+
+Route::get('/messages','MessagesController@index');
+Route::post('/messages','MessagesController@remove');
