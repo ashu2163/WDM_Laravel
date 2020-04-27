@@ -4,17 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Usersmodel;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 
 
 class UsersController extends Controller
 {
 
     public function store(Request $request){
+        $validator= Validator::make($request->all(),[
+            'Fname' => 'required',          
+            'Email' => 'required|email|unique:user',          
+            'password'=> 'required|confirmed|min:8', 
+
+        ]);
+        if($validator->fails()){
+            
+            return back()
+                ->withErrors($validator, 'register')
+                ->withInput();
+        }
+
         $user = $this->find_unique_email($request);
         if($user){
         echo $this->email_exsited_alert();
-        } else{
+        }else{
             $user = new Usersmodel();
             $user->name =  $request->Fname;
             $user->email = $request->Email;
@@ -24,7 +37,16 @@ class UsersController extends Controller
         }
     }
 
-    public function login(Request $request){
+    public function login(Request $request){         
+        $validator= Validator::make($request->all(),[          
+                'Email' => 'required|email',          
+                'password'=> 'required',        
+            ]);        
+        if ($validator->fails()) {
+                return back()
+                ->withErrors($validator, 'login')
+                ->withInput();
+        }
         $user = $this->find_unique_email($request);
         if($user){
             if($user->password == $request->password){
@@ -35,6 +57,7 @@ class UsersController extends Controller
 
             }else{
                 echo  $this->login_failed();
+                //return view('app');
             }
         }else{
            echo  $this->login_failed();

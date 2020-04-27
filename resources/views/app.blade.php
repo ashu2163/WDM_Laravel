@@ -146,9 +146,29 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="loginModal" name="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="alert alert-danger">          
+
+@if($errors->login->any())
+    <script>
+        $(function() {
+            $('#loginModal').modal({
+                show: true
+        });
+    });
+    </script>   
+<ul>              
+    @foreach ($errors->login->all() as $error)
+        <li>{{ $error }}</li>              
+    @endforeach           
+</ul>
+@endif
+</div><br />
+
+
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id='login'>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Login</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -158,15 +178,16 @@
             <div class="modal-body InieteDeSesiem">
                 <img id = 'close' onclick='closePopupWindow()' src="image/close.png" >
                 <form action="login" name="form1" method="POST">
+                {{csrf_field()}}
                     <div class="content_container">
                         <img src="image/logo.png">
                         <h2>CENTRO AUGUSTO MIJARES </h2>
                         <h3>Iniciar Sesion</h3>
                         <div>
-                            <input type="email" id="user"  name="Email" placeholder="Nombre de Usuario o Correo" required>
-                            <input type="password" id="password" name="password" placeholder="Contrasena" required>
+                            <input type="email" id="user"  name="Email" placeholder="Nombre de Usuario o Correo" >
+                            <input type="password" id="password" name="password" placeholder="Contrasena">
                             <div>
-                                <button class="submitbutton" type="submit" onclick="validate()" value="ENTRAR" id="submit">ENTRAR</button>
+                                <button class="submitbutton" type="submit" onclick="validate()" value="ENTRAR" id="submit" onclick="$('#loginModal').modal({'backdrop': 'static'});">ENTRAR</button>
                             </div>
                         </div>
                     </div>
@@ -176,7 +197,36 @@
     </div>
 </div>
 
+<!-- @if(count($errors) > 0)
+<script>
+    $(function() {
+        $('#loginModal').modal({
+            show: true
+        });
+    });
+</script>
+@endif -->
+
+    
+
 <div class="modal fade bd-example-modal-xl" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="alert alert-danger">
+@if($errors->register->any())
+    <script>
+        $(function() {
+            $('#registerModal').modal({
+                show: true
+        });
+    });
+    </script>   
+<ul>              
+    @foreach ($errors->register->all() as $error)
+        <li>{{ $error }}</li>              
+    @endforeach           
+</ul>
+@endif
+</div><br />   
+    
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -187,6 +237,7 @@
             </div>
             <div class="modal-body Registru">
                 <form action="user" name="form2" method="POST">
+                {{csrf_field()}}
                     <div class="content_container">
                         <img src="image/logo.png">
                         <h4>Registro</h4>
@@ -194,11 +245,12 @@
                         <div class="col">
                             <div align=" left">
                                 <div>
-                                    <input placeholder="Nombre" name="Fname" required> <input type="email" placeholder="Correo" name="Email" required>
+                                    <input placeholder="Nombre" name="Fname" > <input type="email" placeholder="Correo" name="Email" >
                                 </div>
                                 <div>
-                                    <input type="password" placeholder="Contrasena" id="pass" name="password" onkeyup="check();" required> <input type="password" placeholder="Repter Contrasena" id="con-pass" onkeyup="check();" name="con-pass" required>
-                                    <span id='message'></span>            </div>
+                                    <input type="password" placeholder="Contrasena" id="pass" name="password" onkeyup="check();"> <input type="password" placeholder="Repter Contrasena" id="con-pass" onkeyup="check();" name="password_confirmation" >
+                                    <span id='message'></span>            
+                                </div>
                                 <div>
                                     <input style="width: 70%" placeholder="Direccion" name="address">
                                 </div>
