@@ -9,10 +9,16 @@
 
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('style/mijares.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="{{ URL::asset('js/popupWindows.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/User.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('Js/popupWindows.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('Js/User.js') }}"></script>
 </head>
+<style>
+    .nav-item{
+        margin: 10px 10px;
+    }
+</style>
 <body>
+
 @section('header')
     <nav class="navbar   navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
 
@@ -57,12 +63,12 @@
                 </li>
 
                 <span>
-                    <a class="nav-link" data-toggle="modal" data-target="#loginModal">
+                    <a id="loginTag" class="nav-link" data-toggle="modal" data-target="#loginModal">
                         login
                     </a>
                 </span>
                 <span>
-                <a  class="nav-link" data-toggle="modal" data-target="#registerModal">
+                <a id="registerTag"  class="nav-link" data-toggle="modal" data-target="#registerModal">
                     register
                 </a>
                 </span>
@@ -148,7 +154,7 @@
 
 
 <div class="modal fade" id="loginModal" name="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="alert alert-danger">          
+<div class="alert alert-danger">
 
 @if($errors->login->any())
     <script>
@@ -157,11 +163,11 @@
                 show: true
         });
     });
-    </script>   
-<ul>              
+    </script>
+<ul>
     @foreach ($errors->login->all() as $error)
-        <li>{{ $error }}</li>              
-    @endforeach           
+        <li>{{ $error }}</li>
+    @endforeach
 </ul>
 @endif
 </div><br />
@@ -207,7 +213,7 @@
 </script>
 @endif -->
 
-    
+
 
 <div class="modal fade bd-example-modal-xl" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="alert alert-danger">
@@ -218,15 +224,15 @@
                 show: true
         });
     });
-    </script>   
-<ul>              
+    </script>
+<ul>
     @foreach ($errors->register->all() as $error)
-        <li>{{ $error }}</li>              
-    @endforeach           
+        <li>{{ $error }}</li>
+    @endforeach
 </ul>
 @endif
-</div><br />   
-    
+</div><br />
+
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -249,7 +255,7 @@
                                 </div>
                                 <div>
                                     <input type="password" placeholder="Contrasena" id="pass" name="password" onkeyup="check();"> <input type="password" placeholder="Repter Contrasena" id="con-pass" onkeyup="check();" name="password_confirmation" >
-                                    <span id='message'></span>            
+                                    <span id='message'></span>
                                 </div>
                                 <div>
                                     <input style="width: 70%" placeholder="Direccion" name="address">

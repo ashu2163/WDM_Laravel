@@ -71,7 +71,7 @@ Route::post('/user','UsersController@store');
 Route::post('/login','UsersController@login');
 Route::get('/bootstrap', function()
 {
-    return view('bootstrapPage.equipo_');
+    return view('bootstrapPage.mailtest');
 });
 
 

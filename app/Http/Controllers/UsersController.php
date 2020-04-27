@@ -12,13 +12,13 @@ class UsersController extends Controller
 
     public function store(Request $request){
         $validator= Validator::make($request->all(),[
-            'Fname' => 'required',          
-            'Email' => 'required|email|unique:user',          
-            'password'=> 'required|confirmed|min:8', 
+            'Fname' => 'required',
+            'Email' => 'required|email|unique:user',
+            'password'=> 'required|confirmed|min:8',
 
         ]);
         if($validator->fails()){
-            
+
             return back()
                 ->withErrors($validator, 'register')
                 ->withInput();
@@ -33,15 +33,18 @@ class UsersController extends Controller
             $user->email = $request->Email;
             $user ->Password = $request->password;
             $user->save();
+            $sub="Registration Message";
+            $message="Thank you for registering!! To add/modify project, events and video, please login!!";
+            mail($user->email,$sub,$message);
             $this->login($request);
         }
     }
 
-    public function login(Request $request){         
-        $validator= Validator::make($request->all(),[          
-                'Email' => 'required|email',          
-                'password'=> 'required',        
-            ]);        
+    public function login(Request $request){
+        $validator= Validator::make($request->all(),[
+                'Email' => 'required|email',
+                'password'=> 'required',
+            ]);
         if ($validator->fails()) {
                 return back()
                 ->withErrors($validator, 'login')
