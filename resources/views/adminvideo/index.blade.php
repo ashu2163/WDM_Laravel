@@ -120,7 +120,7 @@
     <form action="{{route('adminvideo.destroy')}}" method="post" enctype="multipart/form-data" class="form-container">
     @csrf
           <input type='text' id='videoId' name='videoId' hidden>
-          <p>Do you really want to delete this Project??</p>
+          <p>Do you really want to delete this Video??</p>
           <button type="submit" class="btn" >Delete</button>
         </form>
         </div>
@@ -152,11 +152,10 @@
         date=document.getElementById("date"+x).innerHTML;
 
         document.getElementById('vid').value=x;
-        // document.getElementById('userid').value=ui;
         document.getElementById('videotype').value=vt;
         document.getElementById('videoUrl').value=vu;
         document.getElementById('videodescription').value=vd;
-        document.getElementById('date').value=date;
+        document.getElementById('date').value=date.trim();
       }
 
       function btnDelete(x){
