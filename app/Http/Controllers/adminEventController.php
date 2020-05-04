@@ -51,10 +51,10 @@ class adminEventController extends Controller
             return redirect()->route('adminevent.index')->with('info','Event Updated Successfully');
         }
         else{
-            $proj = events::where( 'EventID',$request->input('id'))->update(['EventType'=>$request->input('eventtype'),
+            $proj = events::where( 'EventID',$request->input('eventid'))->update(['EventType'=>$request->input('eventtype'),
                                                                             'EventDescription'=>$request->input('eventdescription'),
                                                                             'Date' => $request->input('date')]);
-            return redirect()->route('adminproject.index')->with('info','Event Updated Successfully');
+            return redirect()->route('adminevent.index')->with('info','Event Updated Successfully');
         }
     }
 
@@ -83,7 +83,7 @@ class adminEventController extends Controller
                 $event->Date = $request->input('indate');
                 $event->save();
 
-                return redirect()->route('adminevent.index')->with('info', 'Project Added Successfully');
+                return redirect()->route('adminevent.index')->with('info', 'Event Added Successfully');
             } else {
                 $event->EventType = $request->input('ineventtype');
                 $event->UserID = $UserID;
@@ -92,7 +92,7 @@ class adminEventController extends Controller
                 $event->Date = $request->input('indate');
                 $event->save();
 
-                return redirect()->route('adminevent.index')->with('info', 'Project Added Successfully');
+                return redirect()->route('adminevent.index')->with('info', 'Event Added Successfully');
             }
         }else {
             echo $this->not_login();
@@ -107,7 +107,7 @@ class adminEventController extends Controller
         $events = events::where('EventID',$_POST['eventId']);
         //delete
         $events->delete();
-        return redirect()->route('adminevent.index')->with('info','Project Deleted Successfully');
+        return redirect()->route('adminevent.index')->with('info','Event Deleted Successfully');
     }
 
     private function not_login(){
