@@ -64,6 +64,48 @@ class adminVideoController extends Controller
         }
     }
 
+    public function store(Request $request)
+    {
+        //Persist the employee in the database
+        //form data is available in the request object
+        if($request->session()->has('UserID')) {
+            $UserID = $request->session()->get('UserID');
+            $video = new videos();
+
+            $videofile = $request->file('invideofile');
+            if ($videofile != '') {
+                $request->validate([
+                    'invideofile' => 'image|max:2048'
+                ]);
+
+                $video_name = rand() . '.' . $videofile->getClientOriginalExtension();
+                $originalname = $videofile->getClientOriginalName();
+                $path = $videofile->move(public_path('proyect_1'), $originalname);
+
+                $video->VideoType = $request->input('invideotype');
+                $video->UserID = $UserID;
+                $video->VideoUrl = 'proyect_1/' . $originalname;
+                $video->VideoDescription = $request->input('invideodescription');
+                $video->Date = $request->input('indate');
+                $video->save();
+
+                return redirect()->route('adminvideo.index')->with('info', 'Video Added Successfully');
+            } else {
+                $video->VideoType = $request->input('invideotype');
+                $video->UserID = $UserID;
+                $video->VideoUrl = '';
+                $video->VideoDescription = $request->input('invideodescription');
+                $video->Date = $request->input('indate');
+                $video->save();
+
+                return redirect()->route('adminvideo.index')->with('info', 'Video Added Successfully');
+            }
+        }else {
+            echo $this->not_login();
+        }
+    }
+
+
     public function destroy()
     {
         //echo $_POST['projId'];

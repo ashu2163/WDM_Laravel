@@ -28,8 +28,8 @@
                 <video width="320" height="150" controls="controls">
                     <source src="{{ $p['VideoUrl'] }}" type="video/mp4">
                 </video>
-                <h4>{{$p["Videotype"]}} </h4>
-                <p>{{$p["Description"]}} </p>
+                <h4>{{$p["VideoType"]}} </h4>
+                <p>{{$p["VideoDescription"]}} </p>
 
             </div>
             @php
