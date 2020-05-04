@@ -156,8 +156,8 @@
         pd=document.getElementById("pd"+x).innerHTML;
         pn=document.getElementById("pn"+x).innerHTML;
         date=document.getElementById("date"+x).innerHTML;
-        document.getElementById('date').value=date;
-        alert(document.getElementById('date').value);
+        document.getElementById('date').value=date.trim;
+        document.getElementById("date").value=date.trim();
         img=document.getElementById("imgsrc"+x).src;
         document.getElementById('projectname').value=pn;
         document.getElementById('projdesc').value=pd;

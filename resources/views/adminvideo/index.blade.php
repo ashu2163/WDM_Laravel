@@ -59,7 +59,7 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">Video Name</th>
+                <th scope="col">Video Type</th>
                 <th scope="col">Video Description</th>
                 <th scope="col">Video url</th>
                 <th scope="col">Video date</th>
@@ -70,8 +70,8 @@
             @foreach($video as $p)
                 <tr>
                     <td id='videoid' >{{$p['VideoID']}} </td>
-                    <td id='vt{{$p["VideoID"]}}'>{{ $p["Videotype"] }} </td>
-                    <td id='vd{{$p["VideoID"]}}'>{{ $p["Description"]   }} </td>
+                    <td id='vt{{$p["VideoID"]}}'>{{ $p["VideoType"] }} </td>
+                    <td id='vd{{$p["VideoID"]}}'>{{ $p["VideoDescription"]   }} </td>
                     <td id='vu{{$p["VideoID"]}}'>{{$p["VideoUrl"]}}</td>
                     <td id='date{{$p["VideoID"]}}'>{{ $p["Date"] }} </td>
                     <td>
@@ -112,6 +112,32 @@
     </div>
     </div>
 
+    <div id="popup2" class="overlay">
+	<div class="edit-popup">
+    <a class="close" href="#">&times;</a>
+    <form action="{{route('adminvideo.store')}}" method="post" enctype="multipart/form-data" class="form-container">
+    @csrf
+
+    <p>Video Type:</p>
+    <input type="text" id="invideotype" name="invideotype" required>
+
+
+    <p>Video Description:</p>
+    <textarea id="invideodescription" name="invideodescription" rows="5" width="50%"></textarea>
+
+    <p> Want to insert Video?<p>
+    <input type="file" id="invideofile" name="invideofile" >
+
+    <p>Date:</p>
+    <input type="Date" id="indate"  name="indate" required>
+
+    <button type="submit" class="btn" >Add</button>
+
+        </form>
+        </div>
+    </div>
+
+
 
 
     <div id="popup3" class="overlay">
@@ -120,7 +146,7 @@
     <form action="{{route('adminvideo.destroy')}}" method="post" enctype="multipart/form-data" class="form-container">
     @csrf
           <input type='text' id='videoId' name='videoId' hidden>
-          <p>Do you really want to delete this Project??</p>
+          <p>Do you really want to delete this Video??</p>
           <button type="submit" class="btn" >Delete</button>
         </form>
         </div>
@@ -148,21 +174,18 @@
       {
         vt=document.getElementById("vt"+x).innerHTML;
         vd=document.getElementById("vd"+x).innerHTML;
-        vu=document.getElementById("vu"+x).innerHTML;
+        vu=document.getElementById("vu"+x).src;
         date=document.getElementById("date"+x).innerHTML;
-
         document.getElementById('vid').value=x;
-        // document.getElementById('userid').value=ui;
         document.getElementById('videotype').value=vt;
         document.getElementById('videoUrl').value=vu;
         document.getElementById('videodescription').value=vd;
-        document.getElementById('date').value=date;
+        document.getElementById('date').value=date.trim();
       }
 
       function btnDelete(x){
-        alert(x);
+        
         document.getElementById('videoId').value=x;
-        alert(document.getElementById('videoId').value);
       }
 
 

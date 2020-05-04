@@ -141,7 +141,7 @@
     <form action="{{route('adminevent.destroy')}}" method="post" enctype="multipart/form-data" class="form-container">
     @csrf
           <input type='text' id='eventId' name='eventId' hidden>
-          <p>Do you really want to delete this Project??</p>
+          <p>Do you really want to delete this Event??</p>
           <button type="submit" class="btn" >Delete</button>
         </form>
         </div>
@@ -158,19 +158,20 @@
         et=document.getElementById("et"+x).innerHTML;
         ed=document.getElementById("ed"+x).innerHTML;
         date=document.getElementById("date"+x).innerHTML;
+        alert(date);
         eventurl=document.getElementById("eventurl"+x).src;
         document.getElementById('eventid').value=x;
         document.getElementById('eventtype').value=et;
 
         document.getElementById('eventdescription').value=ed;
-        document.getElementById('date').value=date;
+        document.getElementById('date').value=date.trim();
         document.getElementById('eventimage').src=eventurl;
 
     }
 
     function btnDelete(x){
         document.getElementById('eventId').value=x;
-        alert(document.getElementById('eventId').value);
+        //alert(document.getElementById('eventId').value);
       }
 
       function closeForm() {

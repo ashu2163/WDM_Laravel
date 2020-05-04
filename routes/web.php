@@ -62,7 +62,7 @@ Route::post('/adminevent/delete','admineventController@destroy')->name('admineve
 Route::get('/adminvideo', 'adminVideoController@index')->name('adminvideo.index');
 Route::post('/adminvideo/update','adminVideoController@update')->name('adminvideo.update');
 Route::post('/adminvideo/delete','adminvideoController@destroy')->name('adminvideo.destroy');
-
+Route::post('/create2','adminVideoController@store')->name('adminvideo.store');
 
 
 
