@@ -75,7 +75,7 @@ class adminVideoController extends Controller
             $videofile = $request->file('invideofile');
             if ($videofile != '') {
                 $request->validate([
-                    'invideofile' => 'image|max:2048'
+                    'invideofile' => 'mimes:mp4,mov,ogg,qt | max:20000'
                 ]);
 
                 $video_name = rand() . '.' . $videofile->getClientOriginalExtension();
