@@ -74,9 +74,9 @@ class adminVideoController extends Controller
 
             $videofile = $request->file('invideofile');
             if ($videofile != '') {
-                $validator = Validator::make($request->all(), [
-                    'videofile' => 'mimetypes:video/avi,video/mpeg,video/quicktime| max: 20000'
-                ]);
+//                $validator = Validator::make($request->all(), [
+//                    'videofile' => 'mimetypes:video/avi,video/mpeg,video/quicktime| max: 20000'
+//                ]);
                 $video_name = rand() . '.' . $videofile->getClientOriginalExtension();
                 $originalname = $videofile->getClientOriginalName();
                 $path = $videofile->move(public_path('proyect_1'), $originalname);

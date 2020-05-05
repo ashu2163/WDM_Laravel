@@ -57,11 +57,11 @@ Route::post('/adminproject/update','adminProjectController@update')->name('admin
 Route::get('/adminevent', 'adminEventController@index')->name('adminevent.index');
 Route::post('/adminevent/update','adminEventController@update')->name('adminevent.update');
 Route::post('/create','adminEventController@store')->name('adminevent.store');
-Route::post('/adminevent/delete','admineventController@destroy')->name('adminevent.destroy');
+Route::post('/adminevent/delete','adminEventController@destroy')->name('adminevent.destroy');
 
 Route::get('/adminvideo', 'adminVideoController@index')->name('adminvideo.index');
 Route::post('/adminvideo/update','adminVideoController@update')->name('adminvideo.update');
-Route::post('/adminvideo/delete','adminvideoController@destroy')->name('adminvideo.destroy');
+Route::post('/adminvideo/delete','adminVideoController@destroy')->name('adminvideo.destroy');
 Route::post('/create2','adminVideoController@store')->name('adminvideo.store');
 
 
@@ -71,7 +71,7 @@ Route::post('/user','UsersController@store');
 Route::post('/login','UsersController@login');
 Route::get('/bootstrap', function()
 {
-    return view('bootstrapPage.mailtest');
+    return view('profile');
 });
 
 
@@ -83,5 +83,5 @@ Route::get('/equipo', function()
 Route::get('/contacts','ContactController@getContact');
 Route::post('/contacts','ContactController@saveContact11');
 
-Route::get('/messages','MessagesController@index');
-Route::post('/messages','MessagesController@remove');
+Route::get('/messages','MessagesController@index')->name('message.index');
+Route::post('/messages','MessagesController@remove')->name('message.remove');
