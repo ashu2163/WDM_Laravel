@@ -50,14 +50,14 @@ class adminVideoController extends Controller
             $path=$video->move(public_path('proyect_1'),$originalname);
             //echo $path;
             $video = videos::where( 'VideoID',$request->input('videoid'))->update(['VideoType'=>$request->input('videotype'),
-                                                                            'Description'=>$request->input('videodescription'),
+                                                                            'VideoDescription'=>$request->input('videodescription'),
                                                                             'VideoUrl'=>'proyect_1/'.$originalname,
                                                                             'Date' => $request->input('date')]);
             return redirect()->route('adminvideo.index')->with('info','Video Updated Successfully');
         }
         else{
             $video = videos::where( 'VideoID',$request->input('videoid'))->update(['VideoType'=>$request->input('videotype'),
-                                                                            'Description'=>$request->input('videodescription'),
+                                                                            'VideoDescription'=>$request->input('videodescription'),
                                                                             'VideoUrl'=>'',
                                                                             'Date' => $request->input('date')]);
             return redirect()->route('adminvideo.index')->with('info','Video Updated Successfully');
@@ -74,9 +74,9 @@ class adminVideoController extends Controller
 
             $videofile = $request->file('invideofile');
             if ($videofile != '') {
-                $validator = Validator::make($request->all(), [
-                    'videofile' => 'mimetypes:video/avi,video/mpeg,video/quicktime| max: 20000'
-                ]);
+//                $validator = Validator::make($request->all(), [
+//                    'videofile' => 'mimetypes:video/avi,video/mpeg,video/quicktime| max: 20000'
+//                ]);
                 $video_name = rand() . '.' . $videofile->getClientOriginalExtension();
                 $originalname = $videofile->getClientOriginalName();
                 $path = $videofile->move(public_path('proyect_1'), $originalname);

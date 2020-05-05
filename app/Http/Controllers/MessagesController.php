@@ -29,11 +29,11 @@ class MessagesController extends Controller
             $messages = messages::where('id',$_POST['id']);
         //delete
             $messages->delete();
-            return redirect()->route('message.index');
+            return back();
         }else{
             echo $this->not_login();
         }
 
-        
+
     }
 }
