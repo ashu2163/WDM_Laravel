@@ -39,18 +39,21 @@
                     <tr>
                         <th scope="col">Email From</th>
                         <th scope="col">Message</th>
+                        <th scope="col">operation</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($mess as $p)
+                        <form action="messages" method="post">
                         <tr>
                             <input type="text" id="id" name="id" value='{{$p["id"]}}' hidden>
                             <td id='eid{{$p["id"]}}'>{{$p["EmailID"]}} </td>
                             <td id='msgid{{$p["id"]}}'>{{$p["Message"]}} </td>
                             <td>
-                                <a class='button'> Mark as Read!!</a>
+                                <button type="submit"  class="btn btn-primary" class='button'> Mark as Read!!</button>
                             </td>
                         </tr>
+                        </form>
                     @endforeach
 
                     </tbody>
