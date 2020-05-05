@@ -29,21 +29,21 @@
         <h3 id="clickedName" style="margin-left:350px;" >Contact Us</h3>
         <form action="contacts" name="form" method="post" class="form-container">
         @csrf
-                <div style="margin-bottom:20px;">
-                    <input type="text" id='name' name='name' style="height:25px; width:450px; margin-left:200px;" value={{$name}} required>
+        <div>
+            <div style="margin-bottom:20px;">
+                <input type="text" id='name' name='name' style="height:25px; width:450px; margin-left:200px;" value={{$name}} required>
 
-                </div>
-                <div style="margin-bottom:20px;">
-                    <input type='email' id='email' name='email' placeholder="Email" style="height:25px; width:450px; margin-left:200px;" required>
+            </div>
+            <div style="margin-bottom:20px;">
+                <input type='email' id='email' name='email' placeholder="Email" style="height:25px; width:450px; margin-left:200px;" required>
 
-                </div>
-                <div style="margin-bottom:20px;">
-                    <textarea id="message" name='message' placeholder="Your message" style="height: 100px; width:450px; margin-left:200px;" required></textarea>
-                </div>
-            <button type="submit" class="btn btn-primary" style="height: 30px; width:150px; margin-left:350px;" >Send Message</button>
-
-        </form>
+            </div>
+            <div style="margin-bottom:20px;">
+                <textarea id="message" name='message' placeholder="Your message" style="height: 100px; width:450px; margin-left:200px;" required></textarea>
+            </div>
+        <button type="button" class="btn btn-primary" type="submit" name="submit"  id="iddButton" style="height: 30px; width:150px; margin-left:350px;" onclick="validateform()" >Send Message</button>
     </div>
+</div>
 
 
 <script>

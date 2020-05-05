@@ -102,7 +102,7 @@
         <input type="text" id="videoUrl" name="videourl" readonly="yes">
 
         <p> Want to change Video?<p>
-        <input type="file" id="videofile" name="videofile" accept="video/mp4">
+        <input type="file" id="videofile" name="videofile" >
 
         <p>Date:</p>
         <input type="Date" id="date"  name="date" required>
@@ -126,7 +126,7 @@
     <textarea id="invideodescription" name="invideodescription" rows="5" width="50%"></textarea>
 
     <p> Want to insert Video?<p>
-    <input type="file" id="invideofile" name="invideofile"  accept="video/mp4">
+    <input type="file" id="invideofile" name="invideofile" >
 
     <p>Date:</p>
     <input type="Date" id="indate"  name="indate" required>
@@ -184,7 +184,7 @@
       }
 
       function btnDelete(x){
-
+        
         document.getElementById('videoId').value=x;
       }
 
